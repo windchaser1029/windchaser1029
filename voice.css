@@ -1,0 +1,8 @@
+.fjjcat {
+    position: absolute;
+    z-index: 9999;
+    width: 100px;
+    height: 40px;
+    top: 80%;
+    right: 750px;
+}

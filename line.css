@@ -1,0 +1,44 @@
+body {
+
+
+    color: #D5D6E2;
+    font-weight: 500;
+    font-size: 1.05em;
+    font-family: "Microsoft YaHei", "Segoe UI", "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.firstchoice {
+    width: 100px;
+    height: 30px;
+    position: absolute;
+    z-index: 9999;
+    top: 0%;
+    right: 950px;
+}
+
+.secondchoice {
+    width: 100px;
+    height: 30px;
+    position: absolute;
+    z-index: 9999;
+    top: 0%;
+    right: 550px;
+}
+
+.thief {
+    font-size: 40px;
+    color: black;
+    position: absolute;
+    z-index: 9999;
+    top: 75%;
+    right: 900px;
+}
+
+.scratch {
+    font-size: 40px;
+    color: black;
+    position: absolute;
+    z-index: 9999;
+    top: 75%;
+    right: 400px;
+}

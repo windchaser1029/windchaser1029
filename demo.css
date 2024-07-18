@@ -1,0 +1,841 @@
+body {
+    font-size: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+/* Reset */
+*,
+*:after,
+*:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+body {
+
+    background: #494A5F;
+    color: #D5D6E2;
+    font-weight: 500;
+    font-size: 1.05em;
+    font-family: "Microsoft YaHei", "Segoe UI", "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+    color: rgba(255, 255, 255, 0.6);
+    outline: none;
+    text-decoration: none;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+}
+
+a:hover,
+a:focus {
+    color: #74777b;
+    text-decoration: none;
+}
+
+#second2 {
+    color: gold;
+
+    font-size: 40px;
+    position: absolute;
+    left: 40%;
+    z-index: 9999;
+    animation: disappear 8s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.zqr {
+    color: gold;
+    position: absolute;
+    z-index: 9999;
+}
+
+@keyframes zqr {
+    0% {
+        transform: translateX(0px);
+    }
+
+    100% {
+        transform: translateX(1000px);
+    }
+}
+
+/* 定义动画关键帧 */
+@keyframes fade-in {
+    0% {
+        opacity: 2;
+    }
+
+    100% {
+        opacity: 4;
+    }
+}
+
+
+
+
+
+/* 烟雾消散 */
+.wrap {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    z-index: 9999;
+    color: transparent;
+    display: inline-block;
+}
+
+.wrap {
+    text-shadow: 0 0 0 #fff;
+    animation: smoky 6s infinite;
+}
+
+@keyframes smoky {
+    60% {
+        text-shadow: 0 0 40px #fff;
+    }
+
+    100% {
+        text-shadow: 0 0 20px #fff;
+        /* 这里是重点 */
+        transform: translate3d(15rem, -8rem, 0) rotate(-40deg) skew(70deg) scale(1.5);
+        opacity: 0;
+    }
+}
+
+h3:nth-child(1) {
+    animation-delay: 1s;
+}
+
+h3:nth-child(2) {
+    animation-delay: 1.4s;
+}
+
+h3:nth-child(3) {
+    animation-delay: 1.8s;
+}
+
+h3:nth-child(4) {
+    animation-delay: 2.2s;
+}
+
+h3:nth-child(5) {
+    animation-delay: 2.6s;
+}
+
+
+
+
+
+
+
+
+
+
+h4 span {
+    display: inline-block;
+    top: 20px;
+    /*字符上下浮动*/
+    position: relative;
+
+    animation: loading 0.3s ease 0s infinite alternate;
+    /*引用动画*/
+    /* animation: 动画名称 动画时间 动画曲线 何时开始 播放次数 是否反方向; 
+    alternate:表示动画先正常运行再反方向运行，并持续交替
+    infinite:表示无限循环*/
+    font-size: 100px;
+    color: white;
+    text-shadow: 0 1px 0 #CCC,
+        0 2px 0 #CCC,
+        0 3px 0 #CCC,
+        0 4px 0 #CCC,
+        0 5px 0 #CCC,
+        0 6px 0 #CCC,
+        0 7px 0 #CCC,
+        0 8px 0 #CCC,
+        0 9px 0 #CCC,
+        0 10px 10px rgba(0, 0, 0, 0.5);
+    /*text-shadow: 水平阴影位置(必须) 垂直阴影位置(必须) 模糊距离(可选) 阴影颜色(可选);
+text-shadow: h-shadow v-shadow blur color; */
+}
+
+h4 span:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+h4 span:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+h4 span:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+h4 span:nth-child(5) {
+    animation-delay: 0.4s;
+}
+
+h4 span:nth-child(6) {
+    animation-delay: 0.5s;
+}
+
+@keyframes loading {
+
+    /* 定义动画*/
+    100% {
+        top: -20px;
+        /*字符上下浮动*/
+        text-shadow: 0 1px 0 #CCC,
+            0 2px 0 #CCC,
+            0 3px 0 #CCC,
+            0 4px 0 #CCC,
+            0 5px 0 #CCC,
+            0 6px 0 #CCC,
+            0 7px 0 #CCC,
+            0 8px 0 #CCC,
+            0 9px 0 #CCC,
+            0 50px 25px rgba(0, 0, 0, 0.3);
+        /*上升的时候阴影要在文字下面一些，所以垂直阴影的位置坐标和模糊距离要大一些*/
+    }
+}
+
+.yishu {
+    /* 本例12个文字(加标点符号)；有多少个文字，width就是多少个em */
+    width: 12em;
+    /* 加上两个动画，一个是打字动画，使用steps让字一个一个的出现，
+     注意step和字数保持一致，光标动画也是同理，*/
+    animation: typingWords 3s steps(10) infinite, cursor 5s steps(1) infinite;
+    /* 要设置不允许换行，且溢出隐藏 */
+    white-space: nowrap;
+    overflow: hidden;
+    /* 使用右边框作为打印的指针光标 */
+    border-right: 1px solid #000;
+    position: absolute;
+
+}
+
+@keyframes typingWords {
+    0% {
+        width: 0;
+    }
+}
+
+@keyframes cursor {
+    50% {
+        border-color: transparent;
+    }
+}
+
+#cc {
+    display: flex;
+    position: absolute;
+    left: 1000;
+    bottom: 300;
+    z-index: 9999;
+}
+
+.hallo {
+    position: absolute;
+    bottom: 450px;
+    left: 30px;
+    z-index: 9999;
+}
+
+
+/* 定义动画关键帧 */
+@keyframes delay {
+    0% {
+        opacity: 0;
+    }
+
+    93% {
+        opacity: 0.01;
+    }
+
+    99% {
+        opacity: 0.5;
+    }
+
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* 应用动画效果 */
+.yishu {
+    animation: fade-in 155s ease-in-out;
+}
+
+
+
+/* 应用动画效果 */
+.hallo {
+    animation: transfer 205s ease-in-out;
+    animation-fill-mode: forwards;
+
+
+}
+
+
+
+.wish {
+    animation: transfer 205s ease-in-out;
+    color: rgb(222, 219, 3);
+    position: absolute;
+    bottom: 350px;
+    left: 10px;
+    z-index: 9999;
+    animation-fill-mode: forwards;
+}
+
+.gift {
+    animation: transfer 100s ease-in-out;
+    color: rgb(222, 219, 3);
+    position: absolute;
+    bottom: 350px;
+    left: 10px;
+    z-index: 9999;
+    animation-fill-mode: forwards;
+}
+
+
+
+@keyframes transfer {
+    0% {
+        opacity: 0;
+    }
+
+
+
+    74% {
+        opacity: 0;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    97% {
+        opacity: 1;
+
+    }
+
+    98% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.author {
+    display: inline-block;
+    color: #CCC;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    font-size: 1000;
+
+}
+
+
+
+
+@keyframes typingWords {
+    0% {
+        width: 0;
+    }
+}
+
+@keyframes cursor {
+    50% {
+        border-color: transparent;
+    }
+}
+
+#dis {
+    color: #CCC;
+    animation: fjj 48s ease-in-out;
+    position: absolute;
+    right: 20px;
+    top: 100px;
+    z-index: 9999;
+    animation-fill-mode: forwards;
+}
+
+.cake {
+    animation: delay 155s ease-in-out;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    z-index: 9999;
+}
+
+.present {
+    animation: transfer 100s ease-in-out;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    z-index: 9999;
+    animation-fill-mode: forwards;
+}
+
+
+
+@keyframes fjj {
+    0% {
+        opacity: 0;
+    }
+
+    70% {
+        opacity: 0;
+    }
+
+    80% {
+        opacity: 0.5;
+    }
+
+    85% {
+        opacity: 1;
+    }
+
+    95% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 0;
+
+    }
+}
+
+
+
+#ask {
+
+    color: #CCC;
+    animation: fjj 40s ease-in-out;
+    position: absolute;
+    right: 20px;
+    top: 35px;
+    z-index: 9999;
+    animation-fill-mode: forwards;
+
+}
+
+
+
+#replace {
+
+    color: #CCC;
+    animation: fjj 53s ease-in-out;
+    position: absolute;
+    right: 20px;
+    top: 35px;
+    z-index: 9999;
+    animation-fill-mode: forwards;
+
+}
+
+
+.achieve {
+    animation: no 205s ease-in-out;
+    color: rgb(222, 219, 3);
+    position: absolute;
+    bottom: 350px;
+    left: 10px;
+    z-index: 9999;
+}
+
+@keyframes change {
+    0% {
+        opacity: 0;
+    }
+
+
+    99% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+
+    }
+}
+
+.f1 {
+    font-size: 64px;
+    display: inline-block;
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    z-index: 9999;
+    animation: count 7s ease-in-out;
+    animation-fill-mode: forwards;
+    color: gold;
+}
+
+.f2 {
+    font-size: 64px;
+    display: inline-block;
+    position: absolute;
+    top: 46px;
+    right: 40px;
+    z-index: 9999;
+    animation: count 10s ease-in-out;
+    animation-fill-mode: forwards;
+    color: gold;
+}
+
+.f3 {
+    font-size: 64px;
+    display: inline-block;
+    position: absolute;
+    top: 52px;
+    right: 40px;
+    z-index: 9999;
+    animation: count 12s ease-in-out;
+    animation-fill-mode: forwards;
+    color: gold;
+}
+
+.f4 {
+    font-size: 64px;
+    display: inline-block;
+    position: absolute;
+    top: 58px;
+    right: 40px;
+    z-index: 9999;
+    animation: fjj 15s ease-in-out;
+    animation-fill-mode: forwards;
+    color: gold;
+}
+
+@keyframes count {
+    0% {
+        opacity: 0;
+    }
+
+    80% {
+        opacity: 0;
+    }
+
+    85% {
+        opacity: 0.5;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    95% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 0;
+
+    }
+}
+
+.f5 {
+    font-size: 64px;
+    display: inline-block;
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    z-index: 9999;
+    animation: count 16s ease-in-out;
+    animation-fill-mode: forwards;
+    color: gold;
+}
+
+.f6 {
+    font-size: 40px;
+    display: inline-block;
+    position: absolute;
+    top: 115px;
+    right: 100px;
+    z-index: 9999;
+    animation: count 20s ease-in-out;
+    animation-fill-mode: forwards;
+    color: burlywood;
+}
+
+.f7 {
+    font-size: 40px;
+    display: inline-block;
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    z-index: 9999;
+    animation: count 23s ease-in-out;
+    animation-fill-mode: forwards;
+    color: #f6f5f5;
+}
+
+.f8 {
+    font-size: 45px;
+    display: inline-block;
+    position: absolute;
+    top: 115px;
+    right: 100px;
+    z-index: 9999;
+    animation: count 27s ease-in-out;
+    animation-fill-mode: forwards;
+    color: #f6f5f5;
+}
+
+
+
+@keyframes no {
+    0% {
+        opacity: 0;
+    }
+
+    98% {
+        opacity: 0;
+    }
+
+    99% {
+        opacity: 0.1;
+    }
+
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.f9 {
+    display: inline-block;
+
+
+    font-size: normal;
+
+    animation: count 30s ease-in-out;
+    position: absolute;
+    bottom: 400px;
+    left: 150px;
+    z-index: 9999;
+    animation-fill-mode: forwards;
+
+
+}
+
+.word {
+    color: #000;
+    position: relative;
+    z-index: 9999;
+}
+
+@keyframes disappear {
+    0% {
+        opacity: 0.5;
+    }
+
+
+    40% {
+        opacity: 1;
+    }
+
+    60% {
+        opacity: 0.5;
+
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.f10 {
+    display: inline-block;
+
+    color: orange;
+    font-size: normal;
+
+    animation: count 35s ease-in-out;
+    position: absolute;
+    bottom: 400px;
+    left: 150px;
+    z-index: 9999;
+    animation-fill-mode: forwards;
+}
+
+.f11 {
+    display: inline-block;
+
+
+    font-size: normal;
+
+    animation: count 40s ease-in-out;
+    position: absolute;
+    bottom: 500px;
+    left: 150px;
+    z-index: 9999;
+    animation-fill-mode: forwards;
+}
+
+.f12 {
+    display: inline-block;
+
+
+    font-size: normal;
+
+    animation: count 45s ease-in-out;
+    position: absolute;
+    bottom: 400px;
+    left: 150px;
+    z-index: 9999;
+    animation-fill-mode: forwards;
+}
+
+.f13 {
+    display: inline-block;
+
+    color: green;
+    font-size: normal;
+
+    animation: no 48s ease-in-out;
+    position: absolute;
+    bottom: 400px;
+    left: 150px;
+    z-index: 9999;
+    animation-fill-mode: forwards;
+}
+
+.f14 {
+    display: inline-block;
+
+    color: green;
+    font-size: normal;
+
+    animation: no 51s ease-in-out;
+    position: absolute;
+    bottom: 300px;
+    left: 150px;
+    z-index: 9999;
+    animation-fill-mode: forwards;
+}
+
+.w1 {
+    display: inline-block;
+
+    color: rgb(22, 88, 22);
+    font-size: normal;
+
+    animation: no 7s ease-in-out;
+    position: absolute;
+    top: 100px;
+    right: 100px;
+    z-index: 9999;
+    animation-fill-mode: forwards;
+    font-family: "宋体";
+}
+
+.w2 {
+    display: inline-block;
+
+    color: rgb(22, 88, 22);
+    font-size: normal;
+
+    animation: no 10s ease-in-out;
+    position: absolute;
+    top: 150px;
+    right: 100px;
+    z-index: 9999;
+    animation-fill-mode: forwards;
+    font-family: "宋体";
+}
+
+.w3 {
+    display: inline-block;
+
+    color: rgb(22, 88, 22);
+    font-size: normal;
+
+    animation: no 13s ease-in-out;
+    position: absolute;
+    top: 200px;
+    right: 100px;
+    z-index: 9999;
+    animation-fill-mode: forwards;
+    font-family: "宋体";
+}
+
+.w4 {
+    display: inline-block;
+
+    color: rgb(22, 88, 22);
+    font-size: normal;
+
+    animation: no 16s ease-in-out;
+    position: absolute;
+    top: 250px;
+    right: 100px;
+    z-index: 9999;
+    animation-fill-mode: forwards;
+    font-family: "宋体";
+}
+
+.w5 {
+    display: inline-block;
+
+    color: rgb(22, 88, 22);
+    font-size: normal;
+
+    animation: no 19s ease-in-out;
+    position: absolute;
+    top: 300px;
+    right: 100px;
+    z-index: 9999;
+    animation-fill-mode: forwards;
+    font-family: "宋体";
+}
+
+.w6 {
+    display: inline-block;
+
+    color: rgb(22, 88, 22);
+    font-size: normal;
+
+    animation: no 24s ease-in-out;
+    position: absolute;
+    top: 350px;
+    right: 100px;
+    z-index: 9999;
+    animation-fill-mode: forwards;
+    font-family: "宋体";
+}
+
+.w7 {
+    display: inline-block;
+
+    color: rgb(22, 88, 22);
+    font-size: normal;
+
+    animation: no 24s ease-in-out;
+    position: absolute;
+    top: 400px;
+    right: 100px;
+    z-index: 9999;
+    animation-fill-mode: forwards;
+    font-family: "宋体";
+}

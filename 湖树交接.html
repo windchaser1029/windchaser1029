@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>风</title>
+    <link rel="stylesheet" type="text/css" href="湖与树.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="demo.css" />
+
+    <link rel="stylesheet" type="text/css" href="normalize.css" />
+    <style>
+        #prev-btn,
+        #next-btn {
+            background-color: #212121;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            padding: 8px 15px;
+            margin: 10px;
+            box-shadow: 2px 2px 2px #888888;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="position: relative;">
+        <div>
+            <video id="v1" autoplay loop muted>
+                <source src="夏天的风.mp4" type="video/mp4" />
+            </video>
+        </div>
+
+        <div style="position: absolute;" class="wind">夏天的风</div>
+
+    </div>
+
+
+    <svg class="scrollarrows">
+
+        <a href="#changepos">
+            <path class="a1" d="M0 0 L6.5 13 L14 0"></path>
+        </a>
+        <a href="#changepos">
+            <path class="a2" d="M0 13 L6.5 26 L14 13"></path>
+        </a>
+        <a href="#changepos">
+            <path class="a3" d="M0 26 L6.5 39 L14 26"></path>
+        </a>
+
+    </svg>
+    <div class="summertree" style="position: relative;"><img src="青色背景.jpg" alt="夏天的风" height="750px" width=100%>
+        <div class="words" id="changepos">
+            <h1 class="word1" style="position: absolute;">我本不大相信星座的，但现在感觉其中还颇有学问</h1>
+            <h1 class="word2" style="position: absolute;">与其说你像金牛座，不如说金牛座像你</h1>
+            <h1 class="word3" style="position: absolute;">也许是会水土不服</h1>
+            <h1 class="word4" style="position: absolute;">但我也会对此不服</h1>
+
+        </div>
+        <div id="pa">
+            <button id="next-btn" style="position: absolute;"><a href="mainly.html" class="sky">starsky</a> <i
+                    class="fa fa-arrow-circle-right"></i></button>
+        </div>
+    </div>
+    <script>
+        // 为了防止第二次创建
+        let playState = true
+        function testAutoPlay() {
+            // 返回一个promise以告诉调用者检测结果
+            return new Promise(resolve => {
+                if (playState) {
+                    let audio = document.createElement('audio');
+                    audio.src = "夏天.mp3"
+                    //循环播放，如果不需要可注释
+
+                    document.body.appendChild(audio);
+                    let autoplay = true;
+                    // play返回的是一个promise
+                    audio.play().then(() => {
+                        // 支持自动播放
+                        autoplay = true;
+                        console.log("正常播放")
+                    }).catch(err => {
+                        // 不支持自动播放
+                        console.log("不支持播放")
+                        autoplay = false;
+                    }).finally((e) => {
+                        resolve(autoplay);
+                    });
+                    playState = false
+                } else {
+                    resolve(false)
+                }
+
+            });
+        }
+
+        let audioInfo = {
+            autoplay: false,
+            testAutoPlay() {
+                return testAutoPlay()
+            },
+            // 监听页面的点击事件，一旦点过了就能autoplay了
+            setAutoPlayWhenClick() {
+                function setAutoPlay() {
+                    // 设置自动播放为true
+                    audioInfo.autoplay = true;
+                    document.removeEventListener('click', setAutoPlay);
+                    document.removeEventListener('touchend', setAutoPlay);
+                }
+                document.addEventListener('click', setAutoPlay);
+                document.addEventListener('touchend', setAutoPlay);
+            },
+            init() {
+                // 检测是否能自动播放
+                audioInfo.testAutoPlay().then(autoplay => {
+                    if (!audioInfo.autoplay) {
+                        audioInfo.autoplay = autoplay;
+                    }
+                });
+                // 用户点击交互之后，设置成能自动播放
+                audioInfo.setAutoPlayWhenClick();
+            }
+        };
+        // PC端
+        document.addEventListener('click', () => {
+            audioInfo.init();
+        });
+        // 移动端
+        document.addEventListener('touchend', () => {
+            audioInfo.init();
+        });
+    </script>
+    <audio src="夏天.mp3"></audio>
+</body>
+<script type="text/javascript" src="jquery-3.0.0.min.js"></script>
+<script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+<script>
+    $('changepos[href*=#],area[href*=#]').click(function () {      //若报错则改为$(document).on('click', 'a[href^="#"]', function () { 
+        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+            var $target = $(this.hash);
+            $target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']');//获取到点击对应id的元素
+            if ($target.length) {
+                var targetOffset = $target.offset().top;
+                $('html,body').animate({   //滑动效果主要用到jq的animate函数
+                    scrollTop: targetOffset
+                }, 500);
+                return false;
+            }
+        }
+    });
+
+</script>
+
+
+
+</html>
